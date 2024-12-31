@@ -52,3 +52,5 @@ flutter config --jdk-dir /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/H
 12. native 启动图 : 
     - flutter pub add flutter_native_splash -d
     - dart run flutter_native_splash:create // 修改后执行操作
+
+13. 轮播图组件: flutter pub add carousel_slider

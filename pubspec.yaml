@@ -63,6 +63,9 @@ dependencies:
   #图标
   flutter_svg: ^2.0.16
 
+  #轮播图
+  carousel_slider: ^5.0.0
+
 
 dev_dependencies:
   flutter_test:
