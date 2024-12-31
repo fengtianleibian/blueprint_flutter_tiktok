@@ -1,0 +1,84 @@
+# Dart
+*.dart_tool/
+*.packages
+.packages
+.pub-cache/
+.pub/
+
+# Flutter specific
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# Android specific
+**/android/.gradle/
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/app/build/
+**/android/.idea/
+**/android/local.properties
+**/android/key.properties
+
+# Web specific
+**/build/web/
+
+# macOS specific
+**/macos/Flutter/Flutter.podspec
+**/macos/Flutter/Flutter.framework/
+**/macos/Flutter/Debug.xcconfig
+**/macos/Flutter/Release.xcconfig
+**/macos/Flutter/App.framework/
+**/macos/Flutter/ephemeral/
+
+# Linux specific
+**/linux/flutter/generated_plugin_registrant.cc
+**/linux/flutter/generated_plugin_registrant.h
+**/linux/flutter/CMakeFiles/
+**/linux/flutter/Makefile
+**/linux/flutter/cmake_install.cmake
+**/linux/flutter/build/
+
+# Windows specific
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/windows/flutter/CMakeFiles/
+**/windows/flutter/Makefile
+**/windows/flutter/cmake_install.cmake
+**/windows/flutter/build/
+
+# Generated files
+*.log
+*.lock
+*.iml
+*.hmap
+*.app
+*.ipa
+*.o
+*.a
+*.dylib
+*.dll
+*.so
+*.lib
+
+# Flutter build outputs
+build/
+flutter_build/
+*.flutter-plugins
+*.flutter-plugins-dependencies
+*.flutter-plugins-dependencies.lock
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+
+# Others
+.DS_Store
+*.tmp
+*.bak
+*.env
