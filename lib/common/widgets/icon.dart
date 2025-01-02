@@ -4,7 +4,7 @@ import 'package:flutter/material.dart'; // Flutter 核心包
 import '../index.dart'; // 项目中的索引文件
 
 /// 图标类型枚举，用于区分图标的加载方式
-enum IconWidgetType {
+enum IconWidgetTypeEnum {
   /// 普通图标 (Material Icons)
   icon,
 
@@ -38,7 +38,7 @@ class IconWidget extends StatelessWidget {
         _width = width;
 
   /// 图标类型 (icon, svg, img)
-  final IconWidgetType type;
+  final IconWidgetTypeEnum type;
 
   /// 图标数据 (仅用于普通图标)
   final IconData? iconData;
@@ -97,7 +97,7 @@ class IconWidget extends StatelessWidget {
     this.onTap,
   })  : _height = height,
         _width = width,
-        type = IconWidgetType.icon;
+        type = IconWidgetTypeEnum.icon;
 
   /// 快捷构造函数，用于图片图标
   const IconWidget.img(
@@ -117,7 +117,7 @@ class IconWidget extends StatelessWidget {
     this.isExpanded,
   })  : _height = height,
         _width = width,
-        type = IconWidgetType.img;
+        type = IconWidgetTypeEnum.img;
 
   /// 快捷构造函数，用于 SVG 图标
   const IconWidget.svg(
@@ -137,7 +137,7 @@ class IconWidget extends StatelessWidget {
     this.isExpanded,
   })  : _height = height,
         _width = width,
-        type = IconWidgetType.svg;
+        type = IconWidgetTypeEnum.svg;
 
   /// 根据图标类型生成具体的图标组件
   Widget _buildIcon(BuildContext context) {
@@ -145,7 +145,7 @@ class IconWidget extends StatelessWidget {
 
     // 根据图标类型选择不同的构建方式
     switch (type) {
-      case IconWidgetType.icon: // 普通图标
+      case IconWidgetTypeEnum.icon: // 普通图标
         icon = Icon(
           iconData, // 图标数据
           size: size ?? AppSize.icon, // 默认图标尺寸
@@ -153,7 +153,7 @@ class IconWidget extends StatelessWidget {
         );
         break;
 
-      case IconWidgetType.svg: // SVG 图标
+      case IconWidgetTypeEnum.svg: // SVG 图标
         icon = ImageWidget.svg(
           path!, // SVG 路径
           width: _width ?? size, // 宽度
@@ -164,7 +164,7 @@ class IconWidget extends StatelessWidget {
         );
         break;
 
-      case IconWidgetType.img: // 图片图标
+      case IconWidgetTypeEnum.img: // 图片图标
         icon = Image.asset(
           path!, // 图片路径
           width: _width ?? size ?? AppSize.icon, // 宽度

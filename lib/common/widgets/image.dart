@@ -7,7 +7,7 @@ import 'package:flutter/material.dart'; // Flutter 的核心包
 import 'package:flutter_svg/svg.dart'; // 用于加载 SVG 图片的库
 
 /// 图片类型枚举，用于区分图片的加载方式
-enum ImageWidgetType {
+enum ImageWidgetTypeEnum {
   /// 普通图片 (支持 Asset 和网络图片)
   img,
 
@@ -39,7 +39,7 @@ class ImageWidget extends StatefulWidget {
   final String path;
 
   /// 图片类型，决定图片加载方式
-  final ImageWidgetType type;
+  final ImageWidgetTypeEnum type;
 
   /// 圆角值，用于设置图片的圆角半径
   final double? radius;
@@ -77,7 +77,7 @@ class ImageWidget extends StatefulWidget {
     this.errorWidget,
     this.elevation,
     this.color,
-  }) : type = ImageWidgetType.img;
+  }) : type = ImageWidgetTypeEnum.img;
 
   /// 构造函数快捷方式，用于加载 SVG 图片
   const ImageWidget.svg(
@@ -91,7 +91,7 @@ class ImageWidget extends StatefulWidget {
     this.errorWidget,
     this.elevation,
     this.color,
-  }) : type = ImageWidgetType.svg;
+  }) : type = ImageWidgetTypeEnum.svg;
 
   /// 构造函数快捷方式，用于加载 SVG 字符串
   const ImageWidget.svgRaw(
@@ -105,7 +105,7 @@ class ImageWidget extends StatefulWidget {
     this.errorWidget,
     this.elevation,
     this.color,
-  })  : type = ImageWidgetType.svgRaw,
+  })  : type = ImageWidgetTypeEnum.svgRaw,
         path = raw; // 将 SVG 字符串作为路径
 
   /// 创建组件状态
@@ -126,7 +126,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         widget.path.startsWith('//');
 
     // 如果是普通图片且路径不是网络路径
-    if (widget.type == ImageWidgetType.img && !isNetwork) {
+    if (widget.type == ImageWidgetTypeEnum.img && !isNetwork) {
       ws = Image.asset(
         widget.path, // 加载本地图片路径
         fit: widget.fit, // 图片适配方式
@@ -135,7 +135,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     }
 
     // 如果是普通图片且路径为网络路径
-    else if (widget.type == ImageWidgetType.img && isNetwork) {
+    else if (widget.type == ImageWidgetTypeEnum.img && isNetwork) {
       ws = CachedNetworkImage(
         imageUrl: widget.path, // 网络图片 URL
         fit: widget.fit, // 图片适配方式
@@ -152,7 +152,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     }
 
     // 如果是 SVG 图片且路径不是网络路径
-    else if (widget.type == ImageWidgetType.svg && !isNetwork) {
+    else if (widget.type == ImageWidgetTypeEnum.svg && !isNetwork) {
       ws = SvgPicture.asset(
         widget.path, // 加载本地 SVG 图片路径
         fit: widget.fit ?? BoxFit.contain, // 图片适配方式
@@ -170,7 +170,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     }
 
     // 如果是 SVG 图片且路径为网络路径
-    else if (widget.type == ImageWidgetType.svg && isNetwork) {
+    else if (widget.type == ImageWidgetTypeEnum.svg && isNetwork) {
       ws = SvgPicture.network(
         widget.path, // 网络 SVG 图片 URL
         fit: widget.fit ?? BoxFit.contain, // 图片适配方式
@@ -188,7 +188,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     }
 
     // 如果是 SVG 原始字符串
-    else if (widget.type == ImageWidgetType.svgRaw) {
+    else if (widget.type == ImageWidgetTypeEnum.svgRaw) {
       ws = SvgPicture.string(
         widget.path, // SVG 字符串内容
         fit: widget.fit ?? BoxFit.contain, // 图片适配方式

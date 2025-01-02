@@ -5,7 +5,7 @@ import 'package:flutter/material.dart'; // Flutter 的核心包
 import '../index.dart'; // 项目中的索引文件
 
 // 排版类型，用于定义文本组件的样式类型
-enum TextWidgetType {
+enum TextWidgetTypeEnum {
   /// 一级标题，用于页面主标题
   h1,
 
@@ -51,7 +51,7 @@ class TextWidget extends StatelessWidget {
   final String text;
 
   /// 排版类型
-  final TextWidgetType? type;
+  final TextWidgetTypeEnum? type;
 
   /// 缩放级别（large, medium, small）
   final WidgetScale? scale;
@@ -98,7 +98,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.h1;
+  }) : type = TextWidgetTypeEnum.h1;
 
   /// 二级标题构造函数
   const TextWidget.h2(
@@ -114,7 +114,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.h2;
+  }) : type = TextWidgetTypeEnum.h2;
 
   /// 三级标题构造函数
   const TextWidget.h3(
@@ -130,7 +130,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.h3;
+  }) : type = TextWidgetTypeEnum.h3;
 
   /// 四级标题构造函数
   const TextWidget.h4(
@@ -146,7 +146,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.h4;
+  }) : type = TextWidgetTypeEnum.h4;
 
   /// 正文构造函数
   const TextWidget.body(
@@ -162,7 +162,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.body;
+  }) : type = TextWidgetTypeEnum.body;
 
   /// 标签构造函数
   const TextWidget.label(
@@ -178,7 +178,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.label;
+  }) : type = TextWidgetTypeEnum.label;
 
   /// 灰色提示文本构造函数
   const TextWidget.muted(
@@ -194,7 +194,7 @@ class TextWidget extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.fontStyle,
-  }) : type = TextWidgetType.muted;
+  }) : type = TextWidgetTypeEnum.muted;
 
   /// 根据类型和缩放计算字体大小
   double _fontSize() {
@@ -203,25 +203,25 @@ class TextWidget extends StatelessWidget {
     // 根据排版类型设置默认字体大小
     if (fontSize == 0) {
       switch (type) {
-        case TextWidgetType.h1:
+        case TextWidgetTypeEnum.h1:
           fontSize = 36;
           break;
-        case TextWidgetType.h2:
+        case TextWidgetTypeEnum.h2:
           fontSize = 30;
           break;
-        case TextWidgetType.h3:
+        case TextWidgetTypeEnum.h3:
           fontSize = 24;
           break;
-        case TextWidgetType.h4:
+        case TextWidgetTypeEnum.h4:
           fontSize = 20;
           break;
-        case TextWidgetType.body:
+        case TextWidgetTypeEnum.body:
           fontSize = 16;
           break;
-        case TextWidgetType.label:
+        case TextWidgetTypeEnum.label:
           fontSize = 14;
           break;
-        case TextWidgetType.muted:
+        case TextWidgetTypeEnum.muted:
           fontSize = 12;
           break;
         default:
@@ -251,14 +251,14 @@ class TextWidget extends StatelessWidget {
 
     // 根据类型返回默认颜色
     switch (type) {
-      case TextWidgetType.h1:
-      case TextWidgetType.h2:
-      case TextWidgetType.h3:
-      case TextWidgetType.h4:
-      case TextWidgetType.body:
-      case TextWidgetType.label:
+      case TextWidgetTypeEnum.h1:
+      case TextWidgetTypeEnum.h2:
+      case TextWidgetTypeEnum.h3:
+      case TextWidgetTypeEnum.h4:
+      case TextWidgetTypeEnum.body:
+      case TextWidgetTypeEnum.label:
         return context.colors.scheme.onSurface; // 默认主表面颜色
-      case TextWidgetType.muted:
+      case TextWidgetTypeEnum.muted:
         return context.colors.scheme.onSurface.withOpacity(0.8); // 较淡的主表面颜色
       default:
         return context.colors.scheme.onSurface; // 默认颜色
