@@ -5,37 +5,43 @@ import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 
 import '../index.dart';
 
+/// 基础 HTTP 服务类
+///
+/// 使用 Dio 封装常用的 HTTP 请求方法，提供全局可用的网络请求服务。
+/// 通过 GetX 的 `GetxService` 实现服务全局单例。
 class BaseHttpService extends GetxService {
+  // 单例实例，通过 Get.find() 获取
   static BaseHttpService get to => Get.find();
 
-  late final Dio _dio;
+  late final Dio _dio; // Dio 实例，用于发送 HTTP 请求
 
   @override
   void onInit() {
     super.onInit();
 
-    // 初始 dio
+    // 初始化 Dio 实例
     var options = BaseOptions(
-      baseUrl: Constants.baseApiUrl,
+      baseUrl: Constants.baseApiUrl, // API 基础 URL
       connectTimeout: const Duration(seconds: 10), // 连接超时
       receiveTimeout: const Duration(seconds: 5), // 响应超时
-      headers: {},
-      contentType: 'application/json; charset=utf-8',
-      responseType: ResponseType.json,
+      headers: {}, // 默认 HTTP 头部
+      contentType: 'application/json; charset=utf-8', // 默认 Content-Type
+      responseType: ResponseType.json, // 默认响应类型
     );
     _dio = Dio(options);
 
-    // 拦截器
+    // 添加自定义拦截器
     _dio.interceptors.add(RequestInterceptors());
   }
 
-  //请求方式====================================
+  // ===================== 请求方法 =====================
+  /// GET 请求
   Future<Response> get(
     String url, {
     //请求的 URL
-    Map<String, dynamic>? params, //请求的查询参数
-    Options? options, //可选的请求选项，用于自定义请求头或其他设置。
-    CancelToken? cancelToken, //用于取消请求
+    Map<String, dynamic>? params, // 查询参数
+    Options? options, // 可选配置
+    CancelToken? cancelToken, // 请求取消令牌
   }) async {
     Options requestOptions = options ?? Options();
     Response response = await _dio.get(
@@ -44,25 +50,27 @@ class BaseHttpService extends GetxService {
       options: requestOptions,
       cancelToken: cancelToken,
     );
-    return response;
+    return response; // 返回响应结果
   }
 
+  /// POST 请求
   Future<Response> post(
     String url, {
-    dynamic data,
-    Options? options,
-    CancelToken? cancelToken,
+    dynamic data, // 请求体数据
+    Options? options, // 可选配置
+    CancelToken? cancelToken, // 请求取消令牌
   }) async {
     var requestOptions = options ?? Options();
     Response response = await _dio.post(
       url,
-      data: data ?? {},
+      data: data ?? {}, // 如果 data 为空，使用空对象
       options: requestOptions,
       cancelToken: cancelToken,
     );
     return response;
   }
 
+  /// PUT 请求
   Future<Response> put(
     String url, {
     dynamic data,
@@ -79,6 +87,7 @@ class BaseHttpService extends GetxService {
     return response;
   }
 
+  /// DELETE 请求
   Future<Response> delete(
     String url, {
     dynamic data,
@@ -125,10 +134,10 @@ class RequestInterceptors extends Interceptor {
           response: response,
           type: DioExceptionType.badResponse,
         ),
-        true,
+        true, // 触发异常
       );
     } else {
-      handler.next(response);
+      handler.next(response); // 正常处理响应
     }
   }
 
@@ -139,18 +148,19 @@ class RequestInterceptors extends Interceptor {
     switch (err.type) {
       case DioExceptionType.badResponse: // 服务端自定义错误体处理
         break;
-      case DioExceptionType.unknown:
+      case DioExceptionType.unknown: // 处理未知错误
         break;
-      case DioExceptionType.cancel:
+      case DioExceptionType.cancel: // 处理请求取消
         break;
-      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.connectionTimeout: // 处理连接超时
         break;
       default:
         break;
     }
+    // 包装错误信息
     DioException errNext = err.copyWith(
       error: exception,
     );
-    handler.next(errNext);
+    handler.next(errNext); // 继续错误处理
   }
 }

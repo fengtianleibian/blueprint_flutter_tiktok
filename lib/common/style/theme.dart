@@ -2,24 +2,29 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-/// 主题
+/// 应用主题统一管理类
+///
+/// 定义了应用的亮色和暗色主题，并支持自定义颜色。
+/// 通过集中管理主题，可以在项目中保持一致的外观风格。
 class AppTheme {
   /////////////////////////////////////////////////
   /// 自定义颜色
   /////////////////////////////////////////////////
 
-  static const primary = Color(0xFF5F84FF);
-  static const secondary = Color(0xFFFF6969);
-  static const success = Color(0xFF23A757);
-  static const warning = Color(0xFFFF1843);
-  static const error = Color(0xFFDA1414);
-  static const info = Color(0xFF2E5AAC);
+  static const primary = Color(0xFF5F84FF); //主颜色
+  static const secondary = Color(0xFFFF6969); //次要颜色
+  static const success = Color(0xFF23A757); //成功状态颜色
+  static const warning = Color(0xFFFF1843); //警告状态颜色
+  static const error = Color(0xFFDA1414); //错误状态颜色
+  static const info = Color(0xFF2E5AAC); //信息颜色
 
   /////////////////////////////////////////////////
   /// 主题
   /////////////////////////////////////////////////
 
   /// 亮色主题
+  ///
+  /// 提供应用的亮色主题，定义了颜色方案和相关样式。
   static ThemeData get light {
     ColorScheme scheme = MaterialTheme.lightScheme().copyWith(
       primary: primary,
@@ -38,6 +43,8 @@ class AppTheme {
   }
 
   /// 暗色主题
+  ///
+  /// 提供应用的暗色主题，定义了颜色方案和相关样式。
   static ThemeData get dark {
     ColorScheme scheme = MaterialTheme.darkScheme().copyWith(
       primary: primary,
@@ -55,12 +62,15 @@ class AppTheme {
     return _getTheme(scheme);
   }
 
-  /// 获取主题
+  /// 获取主题配置
+  ///
+  /// 接收一个 `ColorScheme` 对象，并返回 `ThemeData`。
+  /// 用于统一应用主题的设置，包括颜色方案和字体。
   static ThemeData _getTheme(ColorScheme scheme) {
     return ThemeData(
       useMaterial3: false,
-      colorScheme: scheme, // 主题
-      fontFamily: "Roboto", // 字体
+      colorScheme: scheme, // 配置主题的颜色方案
+      fontFamily: "Roboto", // 设置全局字体
     );
   }
 }

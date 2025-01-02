@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 
+///主题生成文件
+///
+///https://material-foundation.github.io/material-theme-builder/
 class MaterialTheme {
   final TextTheme textTheme;
 
