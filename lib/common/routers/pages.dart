@@ -3,6 +3,7 @@ import 'package:buleprint_frame/common/routers/observers.dart';
 import 'package:buleprint_frame/pages/system/login/view.dart';
 import 'package:buleprint_frame/pages/system/main/view.dart';
 import 'package:buleprint_frame/pages/system/splash/view.dart';
+import 'package:buleprint_frame/pages/system/welcome/view.dart';
 import 'package:get/get.dart';
 
 /// 路由页面配置类
@@ -21,17 +22,23 @@ class RoutePages {
 
   // 路由页面列表
   static List<GetPage> list = [
+    //引导页
     GetPage(
-      name: RouteNames.systemLogin, // 登录页路由名称
-      page: () => const LoginPage(), // 对应页面的构建方法
+      name: RouteNames.systemSplash, // 登录页路由名称
+      page: () => const SplashPage(), // 对应页面的构建方法
+    ),
+    //欢迎页
+    GetPage(
+      name: RouteNames.systemWelcome,
+      page: () => const WelcomePage(),
+    ),
+    GetPage(
+      name: RouteNames.systemLogin,
+      page: () => const LoginPage(),
     ),
     GetPage(
       name: RouteNames.systemMain,
       page: () => const MainPage(),
-    ),
-    GetPage(
-      name: RouteNames.systemSplash,
-      page: () => const SplashPage(),
     ),
   ];
 }

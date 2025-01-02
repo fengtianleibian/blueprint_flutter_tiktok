@@ -8,4 +8,9 @@ class AssetsImages {
   /// 定义启动页图片的资源路径，默认为 `assets/images/splash.jpg`。
   /// 适用于启动页面或初始加载时的背景图。
   static const splashJpg = 'assets/images/splash.jpg';
+
+  ///欢迎页轮播图
+  static const welcome_1Png = 'assets/images/welcome_1.png';
+  static const welcome_2Png = 'assets/images/welcome_2.png';
+  static const welcome_3Png = 'assets/images/welcome_3.png';
 }
