@@ -29,17 +29,22 @@ class WelcomePage extends GetView<WelcomeController> {
 
   /// 主视图
   Widget _buildView() {
-    return <Widget>[
-      // slider切换
-      _buildSlider(),
+    return Container(
+      child: <Widget>[
+        const SizedBox(height: 30),
 
-      // 控制栏
-      _buildBar(),
-    ]
-        .toColumn(
-          mainAxisAlignment: MainAxisAlignment.center, // 垂直均匀排列
-        )
-        .paddingAll(AppSpace.page); // 添加统一的页面边距
+        // slider切换
+        _buildSlider(),
+
+        const SizedBox(height: 80),
+        // 控制栏
+        _buildBar(),
+      ]
+          .toColumn(
+            mainAxisAlignment: MainAxisAlignment.center, // 垂直均匀排列
+          )
+          .paddingAll(AppSpace.page),
+    ); // 添加统一的页面边距
   }
 
   /// 控制栏
@@ -51,10 +56,10 @@ class WelcomePage extends GetView<WelcomeController> {
         return controller.isShowStart //是否显示 start
             ?
             // 开始
-            ButtonWidget.primary(
-                LocaleKeys.welcomeStart.tr, //按钮显示的文字
-                onTap: controller.onToMain, //跳转页面
-              ).tight(
+            ButtonWidget.primary(LocaleKeys.welcomeStart.tr, //按钮显示的文字
+                    onTap: controller.onToMain, //跳转页面
+                    mainAxisAlignment: MainAxisAlignment.start)
+                .tight(
                 width: 200,
               )
             : <Widget>[

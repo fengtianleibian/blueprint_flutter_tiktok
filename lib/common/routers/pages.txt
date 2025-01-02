@@ -12,6 +12,10 @@
         page: () => const SplashPage(),
       ),
       GetPage(
+        name: RouteNames.systemStyles,
+        page: () => const StylesPage(),
+      ),
+      GetPage(
         name: RouteNames.systemWelcome,
         page: () => const WelcomePage(),
       ),
