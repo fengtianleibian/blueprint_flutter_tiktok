@@ -1,5 +1,7 @@
 import 'package:buleprint_frame/common/routers/index.dart';
 import 'package:buleprint_frame/common/routers/observers.dart';
+import 'package:buleprint_frame/pages/styles/input/view.dart';
+import 'package:buleprint_frame/pages/styles/styles_index/view.dart';
 import 'package:buleprint_frame/pages/system/login/view.dart';
 import 'package:buleprint_frame/pages/system/main/view.dart';
 import 'package:buleprint_frame/pages/system/splash/view.dart';
@@ -22,6 +24,16 @@ class RoutePages {
 
   // 路由页面列表
   static List<GetPage> list = [
+    //样式
+    GetPage(
+      name: RouteNames.stylesInput,
+      page: () => const InputPage(),
+    ),
+    GetPage(
+      name: RouteNames.stylesStylesIndex,
+      page: () => const StylesIndexPage(),
+    ),
+    ///////////////////////
     //引导页
     GetPage(
       name: RouteNames.systemSplash, // 登录页路由名称
