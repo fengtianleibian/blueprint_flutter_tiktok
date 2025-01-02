@@ -1,5 +1,7 @@
 import 'package:buleprint_frame/common/index.dart';
 import 'package:buleprint_frame/common/models/welcome_model.dart';
+import 'package:buleprint_frame/common/services/config.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:get/get.dart';
 
 /// 欢迎页控制器
@@ -9,12 +11,26 @@ class WelcomeController extends GetxController {
   //轮播图数据
   List<WelcomeModel>? items;
 
+  /// 指示器当前位置
+  int currentIndex = 0;
+
+  /// 是否显示 Start
+  bool isShowStart = false;
+
+  /// 指示器 slider 控制器
+  CarouselSliderController carouselController = CarouselSliderController();
+
   @override
   void onReady() {
     super.onReady();
 
     //初始化
     _initData();
+
+    // 设置已打开
+    ConfigService().setAlreadyOpen();
+
+    update(["welcomeSlider", 'bar']);
   }
 
   //初始化 三张 轮播图
@@ -41,6 +57,25 @@ class WelcomeController extends GetxController {
   }
 
   void onTap() {}
+
+  /// 当前位置发生改变
+  void onPageChanged(int index) {
+    currentIndex = index;
+    //在第三张图的时候显示 start
+    isShowStart = currentIndex == 2;
+    update(['welcomeSlider', 'bar']);
+  }
+
+  /// 去首页
+  void onToMain() {
+    /// 跳转首页, 并关闭所有页面
+    Get.offAllNamed(RouteNames.systemMain);
+  }
+
+  /// 下一个
+  void onNext() {
+    carouselController.nextPage();
+  }
 
   // @override
   // void onInit() {

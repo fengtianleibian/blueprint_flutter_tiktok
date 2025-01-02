@@ -100,4 +100,11 @@ class ConfigService extends GetxService {
         break;
     }
   }
+
+  // =================是否首次打开===============
+  bool get isAlreadyOpen => Storage().getBool(Constants.storageAlreadyOpen);
+  // 标记已打开app
+  void setAlreadyOpen() {
+    Storage().setBool(Constants.storageAlreadyOpen, true);
+  }
 }

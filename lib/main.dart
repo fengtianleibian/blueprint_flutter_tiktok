@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
 
           // 初始路由
-          initialRoute: RouteNames.systemWelcome,
+          initialRoute: RouteNames.systemSplash,
           // 路由列表
           getPages: RoutePages.list,
           //监听导航行为

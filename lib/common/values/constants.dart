@@ -15,4 +15,7 @@ class Constants {
   /// 用于保存用户选择的语言代码（如 `en` 或 `zh`）。
   /// 常用于多语言设置和存储。
   static const storageLanguageCode = 'language_code';
+
+  /// App首次打开
+  static const storageAlreadyOpen = 'already_open';
 }

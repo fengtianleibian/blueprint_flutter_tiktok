@@ -32,13 +32,14 @@ class RoutePages {
       name: RouteNames.systemWelcome,
       page: () => const WelcomePage(),
     ),
-    GetPage(
-      name: RouteNames.systemLogin,
-      page: () => const LoginPage(),
-    ),
+    //主页
     GetPage(
       name: RouteNames.systemMain,
       page: () => const MainPage(),
+    ),
+    GetPage(
+      name: RouteNames.systemLogin,
+      page: () => const LoginPage(),
     ),
   ];
 }
